@@ -13,11 +13,35 @@ function initApp() {
     // 设置当前单元
     document.getElementById('unit-select').value = data.currentUnit;
     
+    // 检测Unicode喇叭图标兼容性
+    checkSpeakerIconSupport();
+    
     // 绑定事件监听器
     bindEventListeners();
     
     // 初始化界面
     showMode('mode-selector');
+}
+
+// 检测浏览器是否支持Unicode喇叭图标
+function checkSpeakerIconSupport() {
+    const speakerButton = document.getElementById('play-sound');
+    
+    // 尝试检测Unicode喇叭图标是否正常渲染
+    // 如果不支持，使用Font Awesome备用方案
+    const testElement = document.createElement('span');
+    testElement.style.fontFamily = 'initial';
+    testElement.style.visibility = 'hidden';
+    testElement.innerHTML = '\uD83D\uDD0A'; // 喇叭图标Unicode
+    document.body.appendChild(testElement);
+    
+    // 使用零宽度检测方法
+    const supported = testElement.offsetWidth > 0;
+    document.body.removeChild(testElement);
+    
+    if (!supported) {
+        speakerButton.classList.add('fallback');
+    }
 }
 
 // 绑定事件监听器

@@ -107,34 +107,62 @@ header h1 {
 /* 词语显示样式 */
 .word-display {
     text-align: center;
-    margin-bottom: 30px;
+    margin-bottom: 40px;
+    padding: 20px 0;
 }
 
 .pinyin {
-    font-size: 24px;
-    margin-bottom: 15px;
+    font-size: 54px;
+    margin-bottom: 30px;
     color: #7f8c8d;
+    font-weight: 500;
 }
 
 .word {
-    font-size: 48px;
+    font-size: 108px;
     font-weight: bold;
-    margin-bottom: 15px;
+    margin-bottom: 30px;
     color: #2c3e50;
 }
 
 .sound-button {
-    padding: 8px 15px;
-    background-color: #95a5a6;
-    color: white;
+    background-color: transparent;
+    color: #3498db;
     border: none;
-    border-radius: 4px;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 30px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.sound-button:before {
+    content: "\1F50A";
+    font-size: 30px;
+}
+
+/* 添加FontAwesome备用图标方案 */
+.sound-button.fallback:before {
+    content: "";
+}
+
+.sound-button.fallback:after {
+    content: "\f028";
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+    font-size: 30px;
+    position: absolute;
 }
 
 .sound-button:hover {
-    background-color: #7f8c8d;
+    background-color: #f0f0f0;
+    transform: scale(1.1);
 }
 
 /* 评分按钮样式 */
@@ -428,6 +456,15 @@ footer {
         flex-direction: column;
         gap: 20px;
     }
+    
+    /* 适应小屏幕的拼音和汉字大小 */
+    .pinyin {
+        font-size: 36px;  /* 在小屏幕上使用较小的字体 */
+    }
+    
+    .word {
+        font-size: 72px;  /* 在小屏幕上使用较小的字体 */
+    }
 }
 
 /* 新词语标记 */
@@ -486,4 +523,7 @@ footer {
 
 .char-eval-button.wrong {
     background-color: #e74c3c;
-} 
+}
+
+/* 添加FontAwesome支持 */
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css'); 
